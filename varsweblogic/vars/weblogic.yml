@@ -1,0 +1,12 @@
+---
+- hosts: weblogic
+#  sudo: yes
+  become_user: root
+  vars_files:
+     - jdk-vars.yml
+     - weblogic-vars.yml
+     - domain-vars.yml
+  roles:
+   - ansibleWeblogic
+   - startdomain
+   - appdeploy

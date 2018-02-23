@@ -1,0 +1,9 @@
+
+oracle_repository: /opt/repo/oracle
+beahome: "/opt/oracle/weblogic"
+beahomeESCAPE: \/opt\/oracle\/weblogic
+wlsinstalldir: "/opt/oracle/weblogic/wlserver_10.3"
+wlsinstalldirESCAPE: \/opt\/oracle\/weblogic\/wlserver_10\.3
+weblogicuserhome: "/home/weblogic"
+wlsjar: wls1036_generic.jar
+

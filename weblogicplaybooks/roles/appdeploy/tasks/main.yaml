@@ -1,0 +1,31 @@
+---
+- name: "call the jenkins rest api endpoint for starting the jenkins job"
+  register: start_job_result
+  uri: 
+    force_basic_auth: true
+    headers: 
+      Content-Type: application/json
+    method: POST
+    password: "{{ jenkins_cred }}"
+    return_content: true
+    status_code: 201
+    url: "{{jenkins_protocol}}://{{jenkins_host}}/job/{{ jenkins_job }}/build?TOKEN={{jenkins_job_token}}"
+    user: "{{ jenkins_user }}"
+	
+- debug: 
+    var: start_job_result
+    verbosity: 1
+  name: "debug jenkins request result"
+
+- name: create dbca response file
+  template:
+    src: appdeploy.py.j2
+    dest: "/opt/appdeploy.py"
+
+- name: copying war files
+  copy:
+    src: ../files/*.war
+    dest: /opt
+
+- name: deploy application
+  command: java weblogic.WLST /opt/appdeploy.py

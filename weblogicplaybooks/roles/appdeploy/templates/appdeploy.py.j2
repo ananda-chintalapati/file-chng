@@ -1,0 +1,11 @@
+username='{{ username }}';
+password='{{ password }}';
+target_server='{{ target_server }}';
+application_name='{{ application_name }}';
+warfile_name='{{ warfile_name }}';
+warfile_path='{{ warfile_path }}';
+
+connect(username, password, "t3://localhost:7002")
+deploy(application_name,'{{ warfile_path }}/{{ warfile_name }}', targets=target_server)
+startApplication(application_name)
+exit()

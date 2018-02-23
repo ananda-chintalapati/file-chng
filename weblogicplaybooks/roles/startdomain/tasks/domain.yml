@@ -1,0 +1,21 @@
+---
+- name: Enable the restapis
+  command: java weblogic.WLST /opt/oracle/weblogic/user_projects/domains/SitesDomain/api.py
+- name: startweblogic
+  shell: nohup sh /opt/oracle/weblogic/user_projects/domains/SitesDomain/bin/startWebLogic.sh > /tmp/web.log  2>&1 &
+- name: sleep for 300 seconds and continue with play
+  wait_for: timeout=90
+
+- name: copying datasource
+  template:
+    src: datasource.py
+    dest: /opt/oracle/weblogic/user_projects/domains/SitesDomain/
+- name: copying datasource templates
+  template:
+    src: datasource.properties
+    dest: /opt/oracle/weblogic/user_projects/domains/SitesDomain/
+
+#- name: deploying datasource
+#  command: java weblogic.WLST /opt/oracle/weblogic/user_projects/domains/SitesDomain/datasource.py -p /opt/oracle/weblogic/user_projects/domains/SitesDomain/datasource.properties
+
+#- include: startweblogic.yml

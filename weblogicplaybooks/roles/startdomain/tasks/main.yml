@@ -1,0 +1,5 @@
+---
+- include: startweblogic.yml
+- include: domain.yml
+- include: managedservers.yml
+

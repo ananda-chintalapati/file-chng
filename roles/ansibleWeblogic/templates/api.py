@@ -1,0 +1,10 @@
+connect("weblogic", "weblogic", "t3://localhost:7002")
+edit()
+startEdit()
+cd('/RestfulManagementServices/SitesDomain')
+cmo.setEnabled(true)
+save()
+activate()
+shutdown('AdminServer', 'Server')
+exit()
+

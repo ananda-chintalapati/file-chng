@@ -1,0 +1,5 @@
+---
+oracle_repository: /opt/repo/oracle
+jdk_i586: jdk-linux-i586.rpm
+jdk_x64: jdk-linux-x64.rpm
+

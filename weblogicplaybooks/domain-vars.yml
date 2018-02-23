@@ -1,0 +1,15 @@
+
+oracle_repository: /home/angelo/vagrantVM/repo/Software/oracle
+domainname: SitesDomain
+domainpath: /opt/oracle/weblogic/user_projects/domains
+domainadminmanager: "{{ ansible_eth0.ipv4.address }}"
+domainadminmanager: ""
+domainport: 7002
+domainwlsjar: /opt/oracle/weblogic/wlserver_10.3/common/templates/domains/wls.jar
+dbusername: weblogic
+dbpassword: weblogic
+writedomain: /opt/oracle/weblogic/user_projects/domains/SitesDomain
+
+wlsinstalldir: "/opt/oracle/weblogic/wlserver_10.3"
+weblogicuserhome: "/home/weblogic"
+

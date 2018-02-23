@@ -1,0 +1,20 @@
+#[weblogic-test]
+#54.214.227.237 ansible_user="ec2-user"
+[weblogic-test]
+54.202.151.103 ansible_user="root"
+
+[weblogic-1]
+192.168.20.218 ansible_user="centos"
+
+[weblogic-ec2]
+54.202.131.63  ansible_user="root"
+
+[weblogic-test2]
+192.168.20.222 ansible_user="centos"
+
+
+[weblogic-test3]
+54.213.194.30 ansible_user="root"
+
+[weblogic]
+weblogic ansible_host=192.168.10.25 ansible_user="root"

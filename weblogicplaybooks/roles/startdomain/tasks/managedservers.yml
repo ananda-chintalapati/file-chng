@@ -1,0 +1,40 @@
+---
+- name: startNodemanager
+  shell: nohup sh /opt/oracle/weblogic/wlserver_10.3/server/bin/startNodeManager.sh > /tmp/NM.log  2>&1 &
+
+- name: sleep for 300 seconds and continue with play
+  wait_for: timeout=90
+
+- name: copy scripts
+  template:
+    src: cluster.py
+    dest: /opt
+- name: copy scripts
+  template:
+     src: cluster.properties
+     dest: /opt
+- name: copy scripts
+  template:
+     src: managed.py
+     dest: /opt
+- name: copy scripts
+  template:   
+     src: managed.properties
+     dest: /opt
+- name: copy scripts
+  template: 
+     src: machine.py
+     dest: /opt
+- name: copy scripts
+  template:
+     src: startmanagedserver.py
+     dest: /opt
+- name:  create machine
+  command: java weblogic.WLST /opt/machine.py 
+- name:  create cluster
+  command: java weblogic.WLST /opt/cluster.py -p /opt/cluster.properties
+- name: create managedserver
+  command: java weblogic.WLST /opt/managed.py -p /opt/managed.properties
+- name: start managedserver
+  command: java weblogic.WLST /opt/startmanagedserver.py -p /opt/startmanagedserver.py
+

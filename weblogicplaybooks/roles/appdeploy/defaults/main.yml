@@ -1,0 +1,14 @@
+
+---
+username: weblogic
+password: weblogic
+target_server: AdminServer
+application_name: SamplePOC
+warfile_name: SamplePOC.war
+warfile_path: /opt
+jenkins_cred: jenkins
+jenkins_protocol: http
+jenkins_host: 192.168.10.161:8080
+jenkins_job: mat_sample_build
+jenkins_job_token: 5b9575fb7ed9cfa8f0e4def647e9ddb2 
+jenkins_user: admin

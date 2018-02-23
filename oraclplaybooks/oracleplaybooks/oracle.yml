@@ -1,0 +1,17 @@
+---
+- name: set up an oracle database
+  hosts: oracle
+  sudo: yes
+  vars:
+    oracle_path: /u01/app           # ORACLE_BASE will be /u01/app/oracle
+    oracle_db_name: oracle          # ORACLE_SID will be my_special_db
+    oracle_db_home: oracle_home     # ORACLE_HOME will be /u01/app/oracle/product/11.2.0/special_home
+    oracle_db_user: oracle
+    oracle_database_sid: orcle
+    oracle_hostname: oracle
+    oracle_db_pass: Openstack123
+    oracle_db_syspass: Openstack123
+    oracle_installer1: linux.x64_11gR2_database_1of2.zip
+    oracle_installer2: linux.x64_11gR2_database_2of2.zip 
+  roles:
+    - ansible-oracle

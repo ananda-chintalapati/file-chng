@@ -1,0 +1,10 @@
+---
+# align everything, running all stable playbooks in sequence
+#- hosts: weblogic-test
+
+- include: oraclePre.yml
+- include: installWeblogic.yml
+- include: createDomain.yml
+#- include: startweblogic.yml
+#    - include: installWeblogic.yml
+#    - include: createDomain.yml

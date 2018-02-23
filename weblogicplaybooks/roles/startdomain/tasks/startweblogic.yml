@@ -1,0 +1,27 @@
+---
+#- name: startNodemanager
+#  shell: nohup /opt/oracle/weblogic/wlserver_10.3/server/bin/startNodeManager.sh > /dev/null 2>&1 &
+- name: edit files
+  lineinfile:
+    dest: "/usr/java/latest/lib/security/java.security"
+    regexp: ^securerandom.source=
+    line: securerandom.source=file:/dev/./urandom
+
+- name: edit files
+  lineinfile:
+    dest: "/opt/oracle/weblogic/user_projects/domains/SitesDomain/bin/startWebLogic.sh"
+    line: "{{ item }}"
+    insertafter: "umask 037"
+  with_items:
+    - "export USER_MEM_ARGS"
+    - USER_MEM_ARGS="-Xms1024m -Xmx1024m -XX:NewRatio=2 -XX:PermSize=1020m -XX:MaxPermSize=1024m -XX:+UseParallelGC -XX:MaxGCPauseMillis=200 -XX:GCTimeRatio=19 -XX:+UseParallelOldGC"
+- name: startweblogic
+  shell: nohup sh /opt/oracle/weblogic/user_projects/domains/SitesDomain/bin/startWebLogic.sh > /tmp/web.log  2>&1 &
+
+- name: sleep for 300 seconds and continue with play
+  wait_for: timeout=90
+
+- name: restapis
+  template:
+    src: api.py
+    dest: /opt/oracle/weblogic/user_projects/domains/SitesDomain/
